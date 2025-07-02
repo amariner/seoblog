@@ -9,7 +9,7 @@ export function AppHeader() {
           href="/"
           className="text-xl font-bold text-foreground"
         >
-          AstroBlog
+          <span className="text-red-500">SEOBLOG</span>
         </Link>
         <nav>
            <Button asChild variant="ghost">
