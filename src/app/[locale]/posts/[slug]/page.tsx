@@ -16,7 +16,11 @@ export async function generateStaticParams() {
   return [...enParams, ...esParams];
 }
 
-export async function generateMetadata({ params }: { params: { slug: string; locale: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string; locale: string };
+}) {
   const post = getPostBySlug(params.slug, params.locale);
   if (!post) {
     return {
@@ -29,7 +33,11 @@ export async function generateMetadata({ params }: { params: { slug: string; loc
   };
 }
 
-export default function PostPage({ params }: { params: { slug: string; locale: string } }) {
+export default function PostPage({
+  params,
+}: {
+  params: { slug: string; locale: string };
+}) {
   const post = getPostBySlug(params.slug, params.locale);
 
   if (!post) {

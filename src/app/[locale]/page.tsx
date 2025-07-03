@@ -2,7 +2,11 @@ import { getPosts, type Post } from "@/lib/posts";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Home({ params }: { params: { locale: string } }) {
+export default function Home({
+  params,
+}: {
+  params: { locale: string };
+}) {
   const posts = getPosts(params.locale);
 
   return (
