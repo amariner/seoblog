@@ -7,6 +7,12 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
+// This function tells Next.js which locales to build
+export async function generateStaticParams() {
+  // In the future, you could fetch this from a CMS
+  return [{ locale: 'en' }, { locale: 'es' }];
+}
+
 export default function Home({ params }: Props) {
   const posts = getPosts(params.locale);
 
