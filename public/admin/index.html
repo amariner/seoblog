@@ -10,6 +10,21 @@
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
+      CMS.registerMediaLibrary({
+        name: 'cloudinary',
+        init: (config) => {
+          // Inicializa Cloudinary con tu cloud name y API key
+          // Asegúrate de que estos valores coincidan con los de tu config.yml
+          cloudinary.setCloudName(config.cloud_name);
+          cloudinary.setApiKey(config.api_key);
+          return {
+            // Implementa las funciones necesarias para el media library
+            // como open(), close(), etc.
+          };
+        }
+      });
+    </script>
+    <script>
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
           if (!user) {
