@@ -12,9 +12,12 @@ export interface Post {
   content: string; // Markdown content
 }
 
-const postsDirectory = path.join(process.cwd(), "content/posts");
+function getPostsDirectory(locale: string = 'en') {
+  return path.join(process.cwd(), `content/posts/${locale}`);
+}
 
-export function getPosts(): Post[] {
+export function getPosts(locale?: string): Post[] {
+  const postsDirectory = getPostsDirectory(locale);
   try {
     const fileNames = fs.readdirSync(postsDirectory);
     const allPostsData = fileNames
@@ -54,7 +57,8 @@ export function getPosts(): Post[] {
   }
 }
 
-export function getPostBySlug(slug: string): Post | undefined {
+export function getPostBySlug(slug: string, locale?: string): Post | undefined {
+  const postsDirectory = getPostsDirectory(locale);
   const fullPath = path.join(postsDirectory, `${slug}.md`);
   try {
     const fileContents = fs.readFileSync(fullPath, "utf8");

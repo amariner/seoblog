@@ -7,14 +7,17 @@ import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 
 export async function generateStaticParams() {
-  const posts = getPosts();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  const posts = getPosts(); // This will default to 'en'
+  const esPosts = getPosts('es');
+  
+  const enParams = posts.map((post) => ({ slug: post.slug, locale: 'en' }));
+  const esParams = esPosts.map((post) => ({ slug: post.slug, locale: 'es' }));
+
+  return [...enParams, ...esParams];
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+export async function generateMetadata({ params }: { params: { slug: string, locale: string } }) {
+  const post = getPostBySlug(params.slug, params.locale);
   if (!post) {
     return {
       title: "Post Not Found",
@@ -26,8 +29,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function PostPage({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+export default function PostPage({ params }: { params: { slug: string, locale: string } }) {
+  const post = getPostBySlug(params.slug, params.locale);
 
   if (!post) {
     notFound();

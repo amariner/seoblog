@@ -2,10 +2,10 @@ import { getPosts, type Post } from "@/lib/posts";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Home() {
-  const posts = getPosts();
+export default function Home({ params }: { params: { locale: string } }) {
+  const posts = getPosts(params.locale);
 
-  return ( 
+  return (
     <div className="flex flex-col items-center px-4 md:px-8 lg:px-12 py-16 md:py-24">
       <section className="text-left py-24 md:py-40">
         <h1 className="text-4xl md:text-6xl font-medium !leading-snug max-w-4xl">
