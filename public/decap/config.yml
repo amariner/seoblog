@@ -1,14 +1,9 @@
 backend:
   name: git-gateway
 
-media_library:
-  name: cloudinary
-  config:
-    cloud_name: "your-cloud-name" # Replace with your Cloudinary cloud name
-    api_key: "your-api-key" # Replace with your Cloudinary API key
-# # The media_folder and public_folder are relative to the repository root.
-# media_folder: "public/images/uploads"
-# public_folder: "/images/uploads"
+# The media_folder and public_folder are relative to the repository root.
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
 
 collections:
   - name: "blog"
@@ -20,6 +15,7 @@ collections:
     # The 'identifier_field' tells Decap which field to use for the slug. 'title' is the default.
     fields:
       - label: "Title"
+      - label: "featuredImage"
       - { label: "Author", name: "author", widget: "string" }
       - { label: "Published At", name: "publishedAt", widget: "datetime" }
       - { label: "Summary", name: "summary", widget: "string" }
