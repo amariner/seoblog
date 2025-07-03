@@ -2,17 +2,12 @@ import { getPosts, type Post } from "@/lib/posts";
 import Link from "next/link";
 import Image from "next/image";
 
-type Props = {
-  params: { locale: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-// This function tells Next.js which locales to build
+// This tells Next.js which locales to build
 export async function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'es' }];
 }
 
-export default function Home({ params }: Props) {
+export default function Home({ params }: { params: { locale: string } }) {
   const posts = getPosts(params.locale);
 
   return (
