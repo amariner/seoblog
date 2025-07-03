@@ -9,7 +9,6 @@ type Props = {
 
 // This function tells Next.js which locales to build
 export async function generateStaticParams() {
-  // In the future, you could fetch this from a CMS
   return [{ locale: 'en' }, { locale: 'es' }];
 }
 
