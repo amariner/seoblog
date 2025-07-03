@@ -2,6 +2,11 @@ backend:
   name: git-gateway
 
 # The media_folder and public_folder are relative to the repository root.
+i18n:
+  structure: multiple_folders
+  locales: [en, es]
+  default_locale: en
+
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
@@ -12,11 +17,20 @@ collections:
     create: true
     # This will use the "title" field to generate a URL-friendly slug.
     slug: "{{slug}}"
+    i18n: true
     # The 'identifier_field' tells Decap which field to use for the slug. 'title' is the default.
     fields:
       - label: "Title"
+        name: "title"
+        widget: "string"
+        i18n: true
       - label: "featuredImage"
+        name: "featuredImage"
+        widget: "image"
       - { label: "Author", name: "author", widget: "string" }
       - { label: "Published At", name: "publishedAt", widget: "datetime" }
+        i18n: duplicate
       - { label: "Summary", name: "summary", widget: "string" }
+        i18n: true
       - { label: "Body", name: "body", widget: "markdown" }
+        i18n: true
