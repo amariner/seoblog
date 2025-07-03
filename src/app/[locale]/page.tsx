@@ -2,13 +2,7 @@ import { getPosts, type Post } from "@/lib/posts";
 import Link from "next/link";
 import Image from "next/image";
 
-interface HomePageProps {
-  params: {
-    locale: string;
-  };
-}
-
-export default function Home({ params }: HomePageProps) {
+export default function Home({ params }: { params: { locale: string } }) {
   const posts = getPosts(params.locale);
 
   return (
