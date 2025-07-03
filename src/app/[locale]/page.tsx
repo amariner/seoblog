@@ -2,7 +2,13 @@ import { getPosts, type Post } from "@/lib/posts";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Home({ params }: { params: { locale: string } }) {
+interface HomePageProps {
+  params: {
+    locale: string;
+  };
+}
+
+export default function Home({ params }: HomePageProps) {
   const posts = getPosts(params.locale);
 
   return (
@@ -21,7 +27,7 @@ export default function Home({ params }: { params: { locale: string } }) {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16 max-w-screen-lg w-full">
           {posts.map((post) => (
-            <PostCard key={post.slug} post={post} />
+            <PostCard key={post.slug} post={post} locale={params.locale} />
           ))}
         </div>
       </section>
@@ -29,10 +35,10 @@ export default function Home({ params }: { params: { locale: string } }) {
   );
 }
 
-function PostCard({ post }: { post: Post }) {
+function PostCard({ post, locale }: { post: Post, locale: string }) {
   return (
     <article>
-      <Link href={`/posts/${post.slug}`} className="group w-full text-left block">
+      <Link href={`/${locale}/posts/${post.slug}`} className="group w-full text-left block">
         <div className="overflow-hidden rounded-lg">
           <Image
             src={post.featuredImage || "https://placehold.co/600x450.png"}

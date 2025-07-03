@@ -46,7 +46,7 @@ export default function PostPage({ params }: PostPageProps) {
   return (
     <article className="container mx-auto px-6 py-16 md:py-24">
       <div className="mb-16">
-        <Link href="/" className="inline-flex items-center gap-2 font-medium text-primary hover:text-primary/80 transition-colors">
+        <Link href={`/${params.locale}`} className="inline-flex items-center gap-2 font-medium text-primary hover:text-primary/80 transition-colors">
           <ArrowLeft className="w-4 h-4" />
           Back to all posts
         </Link>
