@@ -8,13 +8,17 @@ export const metadata: Metadata = {
   description: "A complete blog site built with Next.js.",
 };
 
+type Props = {
+  children: React.ReactNode;
+  params: { locale: string };
+};
+
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  params,
+}: Props) {
   return (
-    <html lang="en" className="h-full">
+    <html lang={params.locale} className="h-full">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

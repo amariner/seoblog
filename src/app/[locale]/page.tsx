@@ -2,11 +2,12 @@ import { getPosts, type Post } from "@/lib/posts";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Home({
-  params,
-}: {
+type Props = {
   params: { locale: string };
-}) {
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default function Home({ params }: Props) {
   const posts = getPosts(params.locale);
 
   return (

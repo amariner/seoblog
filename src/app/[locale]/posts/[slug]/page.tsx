@@ -6,6 +6,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 
+type Props = {
+  params: { slug: string; locale: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
 export async function generateStaticParams() {
   const posts = getPosts(); // This will default to 'en'
   const esPosts = getPosts('es');
@@ -16,11 +21,7 @@ export async function generateStaticParams() {
   return [...enParams, ...esParams];
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string; locale: string };
-}) {
+export async function generateMetadata({ params }: Props) {
   const post = getPostBySlug(params.slug, params.locale);
   if (!post) {
     return {
@@ -33,11 +34,7 @@ export async function generateMetadata({
   };
 }
 
-export default function PostPage({
-  params,
-}: {
-  params: { slug: string; locale: string };
-}) {
+export default function PostPage({ params }: Props) {
   const post = getPostBySlug(params.slug, params.locale);
 
   if (!post) {
